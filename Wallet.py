@@ -1,30 +1,44 @@
+from datetime import datetime
+
 class Wallet:
         def __init__(self):
-                self.Balance = 100000
+                self.balance = 0
                 self.deposit_list = []
                 self.transfer_list = []
         
-        def deposit(self,amount):
-                self.Balance += amount
-                self.deposit_list.append(amount)
+        def deposit(self,amount,):
+                if amount <=0:
+                        print("Invalid balance, you can't deposit negative balance, please deposit the right amount")
+                        return
+                self.balance += amount
+                self.deposit_list.append(("deposits",amount,datetime.now()))
 
         def check_balance(self):
-                print(f"Your balance is", self.Balance)
+                print(f"Your balance is", self.balance)
 
 
         def transfer(self,amount):
-                self.Balance -= amount
-                self.transfer_list.append(amount)
+                
+                if amount > self.balance:
+                        print("You don't have enough money to compelete this transaction")
+                        return
+                
+                self.balance -= amount
+
+                self.transfer_list.append(("transfer", amount, datetime.now()))
         
         def history(self):
-                
-                print("\nDeposits" )
+                print("\nDeposits")
                 print("---------------------------------------------------")
-                print(self.deposit_list)
 
-                print("\nTransfers" )
+                for op, amount, date in self.deposit_list:
+                        print(f"{date} | +{amount}")
+
+                print("\nTransfers")
                 print("---------------------------------------------------")
-                print(self.transfer_list)
+
+                for op, amount, date in self.transfer_list:
+                        print(f"{date} | -{amount}")
                 
 
 
@@ -40,9 +54,15 @@ while True:
 
 
     if options == "deposit":
-                    deposit = int(input("Please type the amount you want to deposit: "))
-                    print ("You deposited", deposit)
-                    my_wallet.deposit(deposit)
+         
+                deposit = int(input("Please type the amount you want to deposit: ")) 
+
+                if deposit <= 0:
+                        print("Invalid balance, you can't deposit negative balance, please depoist the right amount")
+
+                else:
+                        print ("You deposited", deposit)
+                        my_wallet.deposit(deposit)
 
 
 
