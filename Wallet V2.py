@@ -1,29 +1,58 @@
-class account:
-     def __init__(self):
+from datetime import datetime
+
+class Account:
+     def __init__(self,owner):
           self.balance = 0
           self.history = []
+          self.owner = owner
      
-     def deposit(self,amount):
+     def deposit(self, amount):
+          if amount <=0:
+               return "Invalid balance, you can't deposit negative balance, please deposit the right amount"
+                        
           self.balance += amount
+          self.history.append(f"{datetime.now()} - Deposit +$ {amount}")
 
      def get_balance(self):
           return self.balance
+     
+     def transfer(self, amount):
+          if amount > self.balance:
+               return"You don't have enough money to compelete this transaction"
+                    
+          self.balance -= amount
+          self.history.append(f"{datetime.now()} - Tansfer -$ {amount}")
 
 
-class saving_account(account):
+class Saving_account(Account):
+    def __init__(self, owner, balance):
+         super().__init__(owner)
+         self.interest_rate = 0.03
+         self.balance = balance
+
+
+     
+          
+
+
+class Checking_account(Account):
      pass
 
 
-class checking_account(account):
+class Credit_account(Account):
+     def __init__(self,owner):
+          super().__init__(owner)
+          self.credit_amount = 20000
+          self.bank_overdraft = 30000
+          pass
+          
+
+class Crypto_account(Account):
      pass
 
 
-class crypto_account(account):
-     pass
+savingaccount = Saving_account("Henger", 0)
 
-
-class credit_account(account):
-     pass
 
 
 while True:
@@ -32,3 +61,6 @@ while True:
      print("balance, history, deposit, transfer")
 
      options = input("Choose an option: ")
+
+     if options == "deposit":
+          print(f"You Deposited {savingaccount.deposit(0)}")
