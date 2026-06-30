@@ -1,27 +1,34 @@
 class account:
+     def __init__(self):
+          self.balance = 0
+          self.history = []
+     
+     def deposit(self,amount):
+          self.balance += amount
+
+     def get_balance(self):
+          return self.balance
+
+
+class saving_account(account):
      pass
 
 
-class saving_account():
+class checking_account(account):
      pass
 
 
-class checking_account():
+class crypto_account(account):
      pass
 
 
-class crypto_account():
-     pass
-
-
-class credit_account():
+class credit_account(account):
      pass
 
 
 while True:
 
-    print("Welcome to your wallet, what do you want to do today?")
+     print("\nWelcome to your wallet, what do you want to do today?")
+     print("balance, history, deposit, transfer")
 
-    print("balance, history, deposit, transfer")
-
-    options = input("Choose an option: ")
+     options = input("Choose an option: ")
