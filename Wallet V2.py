@@ -2,7 +2,6 @@ from datetime import datetime
 
 class Account:
      def __init__(self,owner):
-          self.balance = 0
           self.history = []
           self.owner = owner
      
@@ -51,7 +50,21 @@ class Crypto_account(Account):
      pass
 
 
-savingaccount = Saving_account("Henger", 0)
+
+def make_transfer(account):
+     account.transfer()
+
+
+savingAccount = Saving_account("Henger", 0)
+checkingAccount = Checking_account()
+creditAccount = Credit_account()
+cryptoAccount = Crypto_account()
+
+
+make_transfer(savingAccount)
+make_transfer(checkingAccount)
+make_transfer(creditAccount)
+make_transfer(cryptoAccount)
 
 
 
