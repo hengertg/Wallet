@@ -25,10 +25,16 @@ class Account:
 
 
 class Saving_account(Account):
-    def __init__(self, owner, balance):
-         super().__init__(owner)
-         self.interest_rate = 0.03
-         self.balance = balance
+     def __init__(self, owner, balance):
+          super().__init__(owner)
+          self.interest_rate = 0.03
+         
+
+     
+     def transfer(self,amount):
+         fee = amount * 0.0015
+         total = fee + amount
+         print("Bank transfer with small fee")
 
 
      
@@ -48,7 +54,11 @@ class Credit_account(Account):
           
 
 class Crypto_account(Account):
-     pass
+     
+     def transfer(self,amount):
+          fee = amount * 0.02
+          total = amount + fee
+          print("Crypto transfer with fee")
 
 
 
