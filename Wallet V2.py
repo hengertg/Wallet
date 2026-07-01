@@ -2,6 +2,7 @@ from datetime import datetime
 
 class Account:
      def __init__(self,owner):
+          self.balance = 0
           self.history = []
           self.owner = owner
      
