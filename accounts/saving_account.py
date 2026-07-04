@@ -38,7 +38,7 @@ class Saving_account(Account):
                self.balance -= amount
 
                
-               return  amount
+               return amount
                
           else:
                return "You can't withdraw 0 please, type right a amount to withdraw"
