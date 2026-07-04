@@ -61,7 +61,7 @@ saving_account = Saving_account("Henger")
 saving_account.deposit(10000)
 
 
-# print(f"your interest rate is {saving_account.annual_interest_rate()}")
+print(f"your interest rate is {saving_account.annual_interest_rate()}")
 
 print(saving_account.get_balance())
 
