@@ -13,7 +13,7 @@ class Account:
                         
           self.balance += amount
           self.history.append(f"{datetime.now()} - Deposit +$ {amount}")
-          return "You deposit has been successful"
+          return amount
 
      def get_balance(self):
           return self.balance
