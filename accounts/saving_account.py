@@ -1,3 +1,5 @@
+from time import time
+
 from account import *
 
 
@@ -28,12 +30,21 @@ class Saving_account(Account):
          total = fee + amount
          print("Bank transfer with small fee")
 
+         if total > self.balance:
+              return "You don't have enough balance to transfer"
+         self.balance -= total
+
+         # Testing this line to see if it works, if not I will remove it and just use the self.balance -= total
+         # Account.balance += amount
+
+         return f"Transfer Completed, your new balance is {self.balance} and the fee was ${fee}"
+
      def withdraw (self,amount):
           
           if amount > self.balance:
                return "You don't have enough balance"
           
-          elif amount <= self.balance:
+          elif amount < self.balance:
           
                self.balance -= amount
 
@@ -54,11 +65,34 @@ class Saving_account(Account):
           else:
                return "You need a minimun deposit of $10,000 to apply the interest rate"
           
+     def get_balance(self):
+          return self.balance
+     
+     # Transacction history, withdraw and deposit history
+     
+     def history(self):
+          return self.history
+     
+     withdraw_history = {
+          "date": [datetime.now()],
+          "amount": [(withdraw)]
+     }
+     deposit_history = {
+          "date": [],
+          "amount": []
+     }
+
+     transfer_history = {
+          "date": [],
+          "amount": [transfer]
+     }
+
+          
 
 
 saving_account = Saving_account("Henger")
 
-saving_account.deposit(10000)
+saving_account.deposit(30000)
 
 
 print(f"your interest rate is {saving_account.annual_interest_rate()}")
@@ -68,3 +102,7 @@ print(saving_account.get_balance())
 print(f"You withdrew -${saving_account.withdraw(100)}")
 
 print(saving_account.get_balance())
+
+print(saving_account.transfer(1000))
+
+print(saving_account.withdraw_history, saving_account.deposit_history, saving_account.transfer_history)
