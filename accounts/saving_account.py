@@ -9,7 +9,7 @@ from account import *
 
 # Withdraw ✅
 
-# Transfer ⬜
+# Transfer ✅
 
 # History ⬜
 
@@ -28,16 +28,13 @@ class Saving_account(Account):
      def transfer(self,amount):
          fee = amount * 0.0015
          total = fee + amount
-         print("Bank transfer with small fee")
 
          if total > self.balance:
               return "You don't have enough balance to transfer"
-         self.balance -= total
+         elif amount < self.balance:
+              self.balance -= total
 
-         # Testing this line to see if it works, if not I will remove it and just use the self.balance -= total
-         # Account.balance += amount
-
-         return f"Transfer Completed, your new balance is {self.balance} and the fee was ${fee}"
+         return f"Transfer Completed, your new balance is {self.balance} and the tax was ${fee}"
 
      def withdraw (self,amount):
           
@@ -52,7 +49,7 @@ class Saving_account(Account):
                return amount
                
           else:
-               return "You can't withdraw 0 please, type right a amount to withdraw"
+               return "Invalid balance, Please try again"
 
           
      def annual_interest_rate(self):
@@ -74,8 +71,8 @@ class Saving_account(Account):
           return self.history
      
      withdraw_history = {
-          "date": [datetime.now()],
-          "amount": [(withdraw)]
+          "date": [],
+          "amount": []
      }
      deposit_history = {
           "date": [],
@@ -84,7 +81,7 @@ class Saving_account(Account):
 
      transfer_history = {
           "date": [],
-          "amount": [transfer]
+          "amount": []
      }
 
           
